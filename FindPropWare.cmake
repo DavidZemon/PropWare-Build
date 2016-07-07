@@ -86,8 +86,11 @@ if (NOT PropWare_FOUND)
     if (PROPWARE_MAIN_PACKAGE)
         set(PROPWARE_PATH                               "${CMAKE_CURRENT_LIST_DIR}/..")
         set(CMAKE_TOOLCHAIN_FILE                        "${PROPWARE_PATH}/CMakeModules/PropellerToolchain.cmake")
-        set(PropWare_INCLUDE_DIR                        "${PROPWARE_PATH}" "${PROPWARE_PATH}/libpropeller")
-        foreach (component PropWare Libpropeller Simple)
+        set(PropWare_INCLUDE_DIR
+            "${PROPWARE_PATH}"
+            "${PROPWARE_PATH}/libpropeller"
+            "${PROPWARE_PATH}/libArduino/LibPropelleruino")
+        foreach (component PropWare Libpropeller Simple LibPropelleruino)
             foreach (model cog cmm lmm xmmc xmm-split xmm-single)
                 string(TOUPPER ${model} upper_model)
                 set(PropWare_${component}_${upper_model}_LIBRARY ${component}_${model})
@@ -137,7 +140,7 @@ if (NOT PropWare_FOUND)
             endforeach ()
         else ()
             # If we're not using componentized search, grab them all
-            foreach (component PropWare Libpropeller Simple)
+            foreach (component PropWare Libpropeller Simple LibPropelleruino)
                 foreach (model cog cmm lmm xmmc xmm-split xmm-single)
                     string(TOUPPER ${model} upper_model)
                     set(PropWare_${component}_${upper_model}_LIBRARY ${component}_${model})
@@ -178,6 +181,12 @@ if (NOT PropWare_FOUND)
             ${PropWare_Libpropeller_XMMC_LIBRARY}
             ${PropWare_Libpropeller_XMM-SPLIT_LIBRARY}
             ${PropWare_Libpropeller_XMM-SINGLE_LIBRARY}
+            ${PropWare_LibPropelleruino_COG_LIBRARY}
+            ${PropWare_LibPropelleruino_CMM_LIBRARY}
+            ${PropWare_LibPropelleruino_LMM_LIBRARY}
+            ${PropWare_LibPropelleruino_XMMC_LIBRARY}
+            ${PropWare_LibPropelleruino_XMM-SPLIT_LIBRARY}
+            ${PropWare_LibPropelleruino_XMM-SINGLE_LIBRARY}
             ${PropWare_Simple_COG_LIBRARY}
             ${PropWare_Simple_CMM_LIBRARY}
             ${PropWare_Simple_LMM_LIBRARY}
@@ -188,26 +197,32 @@ if (NOT PropWare_FOUND)
         set(PropWare_COG_LIBRARIES
             ${PropWare_PropWare_COG_LIBRARY}
             ${PropWare_Libpropeller_COG_LIBRARY}
+            ${PropWare_LibPropelleruino_COG_LIBRARY}
             ${PropWare_Simple_COG_LIBRARY})
         set(PropWare_CMM_LIBRARIES
             ${PropWare_PropWare_CMM_LIBRARY}
             ${PropWare_Libpropeller_CMM_LIBRARY}
+            ${PropWare_LibPropelleruino_CMM_LIBRARY}
             ${PropWare_Simple_CMM_LIBRARY})
         set(PropWare_LMM_LIBRARIES
             ${PropWare_PropWare_LMM_LIBRARY}
             ${PropWare_Libpropeller_LMM_LIBRARY}
+            ${PropWare_LibPropelleruino_LMM_LIBRARY}
             ${PropWare_Simple_LMM_LIBRARY})
         set(PropWare_XMMC_LIBRARIES
             ${PropWare_PropWare_XMMC_LIBRARY}
             ${PropWare_Libpropeller_XMMC_LIBRARY}
+            ${PropWare_LibPropelleruino_XMMC_LIBRARY}
             ${PropWare_Simple_XMMC_LIBRARY})
         set(PropWare_XMM-SINGLE_LIBRARIES
             ${PropWare_PropWare_XMM-SINGLE_LIBRARY}
             ${PropWare_Libpropeller_XMM-SINGLE_LIBRARY}
+            ${PropWare_LibPropelleruino_XMM-SINGLE_LIBRARY}
             ${PropWare_Simple_XMM-SINGLE_LIBRARY})
         set(PropWare_XMM-SPLIT_LIBRARIES
             ${PropWare_PropWare_XMM-SPLIT_LIBRARY}
             ${PropWare_Libpropeller_XMM-SPLIT_LIBRARY}
+            ${PropWare_LibPropelleruino_XMM-SPLIT_LIBRARY}
             ${PropWare_Simple_XMM-SPLIT_LIBRARY})
 
         file(READ "${PROPWARE_PATH}/version.txt" PropWare_VERSION)
@@ -557,6 +572,12 @@ if (NOT PropWare_FOUND)
         PropWare_Libpropeller_XMMC_LIBRARY
         PropWare_Libpropeller_XMM-SPLIT_LIBRARY
         PropWare_Libpropeller_XMM-SINGLE_LIBRARY
+        PropWare_LibPropelleruino_COG_LIBRARY
+        PropWare_LibPropelleruino_CMM_LIBRARY
+        PropWare_LibPropelleruino_LMM_LIBRARY
+        PropWare_LibPropelleruino_XMMC_LIBRARY
+        PropWare_LibPropelleruino_XMM-SPLIT_LIBRARY
+        PropWare_LibPropelleruino_XMM-SINGLE_LIBRARY
         PropWare_Simple_COG_LIBRARY
         PropWare_Simple_CMM_LIBRARY
         PropWare_Simple_LMM_LIBRARY
