@@ -110,7 +110,9 @@ if (NOT PropWare_FOUND)
         endif ()
 
         find_file(CMAKE_TOOLCHAIN_FILE PropellerToolchain.cmake
-            PATHS "${CMAKE_ROOT}/Modules")
+            PATHS
+                ${CMAKE_MODULE_PATH}
+                "${CMAKE_ROOT}/Modules")
         find_program(CMAKE_MAKE_PROGRAM make
             PATHS "${PROPWARE_PATH}")
 
@@ -265,9 +267,8 @@ if (NOT PropWare_FOUND)
         function (set_compile_flags target)
             # Convert all of the user's flags into a list
             foreach (variable COMMON_FLAGS COMMON_COG_FLAGS ASM_FLAGS C_FLAGS CXX_FLAGS COGC_FLAGS COGCXX_FLAGS ECOGC_FLAGS ECOGCXX_FLAGS)
-                separate_arguments(${variable} UNIX_COMMAND "${${separate_arguments}}")
+                separate_arguments(${variable} UNIX_COMMAND "${${variable}}")
             endforeach ()
-
 
             if (AUTO_OPTIMIZATION)
                 list(APPEND COMMON_FLAGS -Os)
