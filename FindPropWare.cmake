@@ -522,7 +522,6 @@ if (NOT PropWare_FOUND)
             set(${output_var_name} ${UNIQUE_OUTPUT_FILES} PARENT_SCOPE)
         endfunction()
 
-        # TODO: Add build system documentation for testing
         enable_testing()
         add_custom_target(test-all COMMAND ${CMAKE_CTEST_COMMAND} --output-on-failure)
         function(create_test target src1)
