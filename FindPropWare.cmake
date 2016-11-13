@@ -482,6 +482,7 @@ if (NOT PropWare_FOUND)
 
             # Find output files
             execute_process(COMMAND "${SPIN2CPP_COMMAND}" --files "${SOURCE_PATH}"
+                WORKING_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}"
                 OUTPUT_VARIABLE FILES_STRING
                 RESULT_VARIABLE SPIN2CPP_DEPENDS_CODE
                 OUTPUT_STRIP_TRAILING_WHITESPACE)
