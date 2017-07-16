@@ -89,7 +89,8 @@ if (NOT PropWare_FOUND)
         set(PropWare_INCLUDE_DIR
             "${PROPWARE_PATH}"
             "${PROPWARE_PATH}/libpropeller"
-            "${PROPWARE_PATH}/libArduino/LibPropelleruino")
+            "${PROPWARE_PATH}/libArduino/LibPropelleruino"
+            "${PROPWARE_PATH}/ArduinoJson/src")
         foreach (component PropWare Libpropeller Simple LibPropelleruino)
             foreach (model cog cmm lmm xmmc xmm-split xmm-single)
                 string(TOUPPER ${model} upper_model)
