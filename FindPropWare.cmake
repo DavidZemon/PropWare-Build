@@ -165,8 +165,11 @@ if (NOT PropWare_FOUND)
             PATHS
                 "${PROPWARE_PATH}/CMakeModules"
                 "${CMAKE_ROOT}/Modules")
+
+        get_filename_component(PROPGCC_BIN_DIR "${CMAKE_CXX_COMPILER}" DIRECTORY)
         find_program(SPIN2CPP_COMMAND spin2cpp
-            "${PROPWARE_PATH}")
+            "${PROPWARE_PATH}"
+            "${PROPGCC_BIN_DIR}")
 
         set(PropWare_LIBRARIES
             # Built-ins
