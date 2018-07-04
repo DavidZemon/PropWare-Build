@@ -106,7 +106,7 @@ if (NOT PropWare_FOUND)
                     include/PropWare/PropWare.h   # ... or we're looking for the key PropWare header in a system folder
                 PATHS
                     "$ENV{PROPWARE_PATH}" # Check the environment first
-                    "${CMAKE_ROOT}/../../../PropWare" # Or go with the installed version next to pwcmake
+                    "${CMAKE_ROOT}/../PropWare" # Or go with the installed version next to pwcmake
             )
         endif ()
 
