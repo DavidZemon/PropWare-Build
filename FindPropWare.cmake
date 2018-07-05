@@ -102,11 +102,10 @@ if (NOT PropWare_FOUND)
             OR NOT EXISTS "${PROPWARE_PATH}/lib/PropWare-targets.cmake")
             find_path(PROPWARE_PATH
                 NAMES
-                    ./CMakePropWareInstall.cmake  # We're either looking for PropWare's root source folder
-                    include/PropWare/PropWare.h   # ... or we're looking for the key PropWare header in a system folder
+                    lib/PropWare-targets.cmake
                 PATHS
                     "$ENV{PROPWARE_PATH}" # Check the environment first
-                    "${CMAKE_ROOT}/../PropWare" # Or go with the installed version next to pwcmake
+                    "${CMAKE_ROOT}/../PropWare" # Or go with the installed version next to CMake
             )
         endif ()
 
