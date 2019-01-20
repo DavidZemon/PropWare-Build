@@ -489,6 +489,10 @@ if (NOT PropWare_FOUND)
     endfunction ()
 
     function(spin2cpp source output_var_name)
+        if (NOT SPIN2CPP_COMMAND)
+            message(FATAL_ERROR "Unable to use the `spin2cpp()` CMake function when spin2cpp can not be found on your system.")
+        endif ()
+
         get_filename_component(SOURCE_PATH "${source}" ABSOLUTE)
 
         # Find output files
