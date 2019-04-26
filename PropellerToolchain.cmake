@@ -1,6 +1,13 @@
 set(CMAKE_SYSTEM_NAME Generic)
 set(CMAKE_SYSTEM_PROCESSOR Propeller)
 
+set(CMAKE_EXECUTABLE_SUFFIX_C   ".elf")
+set(CMAKE_EXECUTABLE_SUFFIX_CXX ".elf")
+
+# For bare-metal compilers, need to set this:
+#   https://github.com/ObKo/stm32-cmake/issues/42
+SET(CMAKE_TRY_COMPILE_TARGET_TYPE STATIC_LIBRARY)
+
 if (NOT DEFINED GCC_PATH)
     if (WIN32)
         set(EXE_SUFFIX ".exe")
@@ -82,7 +89,7 @@ set(CMAKE_DAT_COMPILER "${CMAKE_C_COMPILER}")
 
 get_filename_component(GCC_PATH "${CMAKE_C_COMPILER}" DIRECTORY CACHE)
 
-set(CMAKE_FIND_ROOT_PATH "${PROPGCC_PREFIX}/..")
+set(CMAKE_FIND_ROOT_PATH "${GCC_PATH}/..")
 
 # Don't search for programs compiled for the Propeller architecture
 set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM never)
