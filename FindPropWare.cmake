@@ -178,7 +178,8 @@ if (NOT PropWare_FOUND)
         get_filename_component(PROPGCC_BIN_DIR "${CMAKE_C_COMPILER}" DIRECTORY)
         find_program(SPIN2CPP_COMMAND spin2cpp
             "${PROPWARE_PATH}"
-            "${PROPGCC_BIN_DIR}")
+            "${PROPGCC_BIN_DIR}"
+            "$ENV{PROPGCC_PREFIX}/bin")
 
         set(PropWare_LIBRARIES
             # Built-ins
