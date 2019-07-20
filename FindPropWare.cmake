@@ -91,6 +91,7 @@ if (NOT PropWare_FOUND)
     option(WARN_ALL "Turn on all compiler warnings (-Wall)" ON)
     option(AUTO_C_STD "Set C standard to gnu99 (-std=gnu99)" ON)
     option(AUTO_CXX_STD "Set C++ standard to the latest available by the compiler" ON)
+    option(SAVE_TEMPS "Save preprocessed (.i/.ii) source and generated assembly (.s) files." ON)
 
     # Size optimizations
     option(AUTO_OPTIMIZATION "Set optimization level to \"size\" (-Os)" ON)
@@ -307,6 +308,11 @@ if (NOT PropWare_FOUND)
             list(APPEND CXX_FLAGS --std=gnu++0x)
         endif ()
 
+        if (SAVE_TEMPS)
+            # Only save temps when explicitly requested - prevents highly parallel builds with duplicate file names
+            list(APPEND COMMON_FLAGS -save-temps)
+        endif ()
+
         # C++ Language features
         macro (add_language_feature_option option_name feature)
             if (${option_name})
@@ -344,8 +350,6 @@ if (NOT PropWare_FOUND)
             set(CFLAGS )
             set(CXXFLAGS )
         endif()
-
-        list(APPEND COMMON_FLAGS -save-temps)
 
         get_property(_languages GLOBAL PROPERTY ENABLED_LANGUAGES)
 
